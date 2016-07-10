@@ -37,6 +37,7 @@ module.exports.createUsers = function(req, res) {
 
 	module.exports.getAllUsers = function(req, res) {
 	    Users.find().exec(function(err, users) {
+        console.log("hereeree");
             if(err) {
                 console.log("Error in reading users");
                 return;
@@ -94,3 +95,12 @@ module.exports.createUsers = function(req, res) {
             res.send(user == null ? 404 : user);
   		});
   	};
+
+    module.exports.findUserByInternalNumber = function(internalNumber, user) {
+        Users.findOne({internalNumber:internalNumber}).exec(function (err, user) {
+            if(user==null){
+              console.log("Not found with this internalNumber");
+            }
+           return user;
+        });
+    };

@@ -27,12 +27,19 @@ module.exports = function(app) {
 	app.post('/api/beverages/updateWithUpsert', beverageHandler.updateWithUpsert)
 
 
-	app.get('/api/water_dispenser/consumption/empId/:empId', waterDispenserHandler.getConsumptionOfEmployee);
-	app.get('/api/water_dispenser/leaderboard',waterDispenserHandler.leaderboard);
-	app.get('/api/water_dispenser/consumption/new/internalNumber/:internalNumber/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmount);
+	app.get('/api/waterdispenser/consumption/empId/:empId', waterDispenserHandler.getConsumptionOfEmployee);
+	app.get('/api/waterdispenser/consumption/new/internalNumber/:internalNumber/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountByInternalCardNumber);
+  app.get('/api/waterdispenser/consumption/new/empId/:empId/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountBymployeeId);
 
 
-	//users 
+  // app.get('/api/leaderboard/overall/limit/:limit',leaderboardHandler.overallLeaderboard);
+  // app.get('/api/leaderboard/daily/limit/:limit',leaderboardHandler.dailyLeaderboard);
+  // app.get('/api/leaderboard/weekly/limit/:limit',leaderboardHandler.weeklyLeaderboard);
+  // app.get('/api/leaderboard/monthly/limit/:limit',leaderboardHandler.monthlyLeaderboard);
+  // app.get('/api/leaderboard/yealy/:limit',leaderboardHandler.yearlyLeaderboard);
+
+
+	//users
 
 	app.post('/api/createUsers', upload.single('users'), userHandler.createUsers);
 	app.get('/api/users/', userHandler.getAllUsers);
@@ -61,4 +68,3 @@ module.exports = function(app) {
 	app.post('/api/login', loginHandler.loginUser);
 	app.delete('/api/login', loginHandler.destroyLoginSession);
 };
-
