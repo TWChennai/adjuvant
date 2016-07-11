@@ -45,6 +45,7 @@ module.exports.insertConsumptionAmountByInternalCardNumber = function(req,res){
 	Users.findOne({internalNumber: internalNumber}).exec(function (err, user) {
 			if(user == null) {
 					console.log("No users with this internal Number");
+					res.send(response);
 			}
 			else{
 
