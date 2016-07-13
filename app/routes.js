@@ -1,5 +1,3 @@
-var orderHandler = require('./handlers/order');
-var beverageHandler = require("./handlers/beverage");
 var userHandler = require("./handlers/user");
 var newUserHandler = require("./handlers/newUser")
 var logHandler = require("./handlers/log")
@@ -15,17 +13,6 @@ module.exports = function(app) {
     app.use(expressSession({secret: 'mySecretKey'}));
     app.use(passport.initialize());
     app.use(passport.session());
-
-	app.post('/api/beverages/', beverageHandler.create);
-	app.put('/api/beverages/:id', beverageHandler.update);
-	app.get('/api/beverages/', beverageHandler.findAll);
-	app.get('/api/beverages/', beverageHandler.findAll);
-	app.get('/api/beverages/juices', beverageHandler.findJuices);
-	app.get('/api/beverages/fruits', beverageHandler.findFruits);
-	app.get('/api/beverages/:id', beverageHandler.findById);
-	app.delete('/api/beverages/:beverageName', beverageHandler.deleteBeverage);
-	app.post('/api/beverages/updateWithUpsert', beverageHandler.updateWithUpsert)
-
 
 	app.get('/api/waterdispenser/consumption/empId/:empId', waterDispenserHandler.getConsumptionOfEmployee);
 	app.get('/api/waterdispenser/consumption/new/internalNumber/:internalNumber/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountByInternalCardNumber);
@@ -49,14 +36,7 @@ module.exports = function(app) {
     app.post('/api/users/', userHandler.addUser);
     app.put('/api/users/:empId/', userHandler.updateUser);
 
-	app.post('/api/orders', orderHandler.create);
-	app.get('/api/orders', orderHandler.allOrders);
-	app.get('/api/orders/recentOrders', orderHandler.lastTenOrders);
-	app.get('/api/orders/summary', orderHandler.todayOrders);
-	app.get('/api/orders/:startDate/:endDate', orderHandler.ordersForSelectPeriod);
-
-	app.delete('/api/orders/:id/', orderHandler.deleteOrder);
-
+	
 	app.post('/api/register/', newUserHandler.register);
 	app.get('/api/register/', newUserHandler.getAllUsers);
 	app.get('/api/register/internalNumber/:internalNumber', newUserHandler.getUserByInternalNumber);
