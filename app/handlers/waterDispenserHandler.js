@@ -24,6 +24,26 @@ module.exports.insertConsumptionAmount = function(req,res){
 }
 
 
+module.exports.getTopConsumers = function (req, res) {
+	var today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	WaterConsumption.aggregate([{$match: {timeStamp: {$gt: today}}}, {
+		$group: {
+			_id: "$empId",
+			consumption: {$sum: "$consumptionAmount"}
+		}
+	}, {$sort: {consumption: -1 }}]).limit(5).exec(function (err, con) {
+
+		if (err) {
+			console.log("Error in reading users");
+			return;
+		}
+		res.send(con == null ? 404 : con);
+	});
+
+};
+
 module.exports.getConsumptionOfEmployee = function(req,res){
 	var employeeId = req.params.empId;
 	WaterConsumption.find({empId:employeeId}).exec(function (err, waterConsumptions) {
