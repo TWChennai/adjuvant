@@ -15,7 +15,7 @@ module.exports = function(app) {
     app.use(passport.session());
 
 	app.get('/api/waterdispenser/topConsumers/', waterDispenserHandler.getTopConsumers);
-	app.get('/api/waterdispenser/consumption/empId/:empId', waterDispenserHandler.getConsumptionOfEmployee);
+	app.get('/api/waterdispenser/consumption/empId/:empId', waterDispenserHandler.getTodaysConsumptionOfEmployee);
 	app.get('/api/waterdispenser/consumption/new/internalNumber/:internalNumber/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountByInternalCardNumber);
   app.get('/api/waterdispenser/consumption/new/empId/:empId/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountBymployeeId);
 
