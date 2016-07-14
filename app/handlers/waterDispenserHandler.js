@@ -1,6 +1,7 @@
 var WaterConsumption = require("../models/waterConsumption");
 var userHandler = require("../handlers/user");
 var Users = require('../models/user');
+var consumptionNumber=0;
 
 
 module.exports.insertConsumptionAmount = function (req, res) {
@@ -84,7 +85,7 @@ module.exports.insertConsumptionAmountByInternalCardNumber = function (req, res)
     var consumptionAmount = req.params.consumptionAmount;
     var response = {};
     response.status = "failure";
-    console.log("here here here");
+    console.log("Consumption number : ", consumptionNumber++);
 
     Users.findOne({internalNumber: internalNumber}).exec(function (err, user) {
         if (user == null) {
@@ -142,15 +143,3 @@ module.exports.insertConsumptionAmountBymployeeId = function (req, res) {
 
     res.json(waterConsumption);
 }
-
-
-// module.exports.leaderboard = function (req,res) {
-//
-// 	// var sorted_waterConsumptionList = WaterConsumption.sort_by_consumptionAmount
-//
-// 	// var firstTopTenWaterConsumption = sort_by_consumptionAmount.first(10)
-//
-// 	// res.json(firstTopTenWaterConsumption);
-//
-//
-// }

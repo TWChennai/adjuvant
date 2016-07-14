@@ -4,6 +4,7 @@ var rmdir = require('rimraf');
 var xlsxj = require('xlsx2json');
 var root = require('root-path');
 var internalCardLength = 5;
+var hitsCount=0;
 
 var transform = function(internalNumber) {
     while (internalNumber.length < internalCardLength) {
@@ -37,7 +38,7 @@ module.exports.createUsers = function(req, res) {
 
 	module.exports.getAllUsers = function(req, res) {
 	    Users.find().exec(function(err, users) {
-        console.log("hereeree");
+        console.log("Hits on site: ", hitsCount++);
             if(err) {
                 console.log("Error in reading users");
                 return;
