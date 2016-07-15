@@ -28,6 +28,8 @@ module.exports.insertConsumptionAmount = function (req, res) {
 module.exports.getTopConsumers = function (req, res) {
     var today = new Date();
     today.setHours(0, 0, 0, 0);
+    res.header("Access-Control-Allow-Origin", "*");
+
 
     WaterConsumption.aggregate([{$match: {timeStamp: {$gt: today}}}, {
         $group: {
@@ -64,6 +66,7 @@ module.exports.getTodaysConsumptionOfEmployee = function (req, res) {
             console.log("Error in getting today's consumption");
             return;
         }
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(consumption == null ? 404 : consumption);
     });
 }
