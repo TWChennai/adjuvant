@@ -43,6 +43,7 @@ module.exports.createUsers = function(req, res) {
                 console.log("Error in reading users");
                 return;
             }
+            res.header("Access-Control-Allow-Origin", "*");
             res.send(users == null ? 404 : users);
         });
 	};

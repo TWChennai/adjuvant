@@ -76,6 +76,7 @@ module.exports.getConsumptionOfEmployee = function (req, res) {
             console.log("Error in reading users");
             return;
         }
+        res.header("Access-Control-Allow-Origin", "*");
         res.send(waterConsumptions == null ? 404 : waterConsumptions);
     });
 }
@@ -86,6 +87,7 @@ module.exports.insertConsumptionAmountByInternalCardNumber = function (req, res)
     var response = {};
     response.status = "failure";
     console.log("Consumption number : ", consumptionNumber++);
+    res.header("Access-Control-Allow-Origin", "*");
 
     Users.findOne({internalNumber: internalNumber}).exec(function (err, user) {
         if (user == null) {
@@ -140,6 +142,6 @@ module.exports.insertConsumptionAmountBymployeeId = function (req, res) {
             return;
         }
     });
-
+    res.header("Access-Control-Allow-Origin", "*");
     res.json(waterConsumption);
 }
