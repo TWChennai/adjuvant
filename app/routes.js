@@ -17,7 +17,6 @@ module.exports = function(app) {
 	app.get('/api/waterdispenser/topConsumers/', waterDispenserHandler.getTopConsumers);
 	app.get('/api/waterdispenser/consumption/empId/:empId', waterDispenserHandler.getTodaysConsumptionOfEmployee);
 	app.get('/api/waterdispenser/consumption/new/internalNumber/:internalNumber/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountByInternalCardNumber);
-  app.get('/api/waterdispenser/consumption/new/empId/:empId/consumption/:consumptionAmount',waterDispenserHandler.insertConsumptionAmountBymployeeId);
 
 
   // app.get('/api/leaderboard/overall/limit/:limit',leaderboardHandler.overallLeaderboard);
