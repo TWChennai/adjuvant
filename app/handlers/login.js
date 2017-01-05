@@ -18,7 +18,7 @@ module.exports.loginUser = function(req, res, next) {
 	    res.status(200).send({redirect: '/#/manageJuices'});
 
       })(req, res, next);
-    }
+    };
 
     passport.use(new LocalStrategy(
           function(username, password, done) {
@@ -38,4 +38,4 @@ module.exports.loginUser = function(req, res, next) {
 module.exports.destroyLoginSession = function(req, res) {
     req.session.destroy();
 
-}
+};

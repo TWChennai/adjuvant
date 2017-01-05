@@ -22,6 +22,7 @@ adjuvant.config(function($routeProvider) {
             controller: 'ordersController'
         })
         .when('/login', {
+            
             templateUrl: 'partials/login.html',
             controller: 'loginController'
         })
